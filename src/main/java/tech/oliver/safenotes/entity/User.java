@@ -2,6 +2,8 @@ package tech.oliver.safenotes.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "tb_users")
 public class User {
@@ -20,6 +22,30 @@ public class User {
     @Column(name = "token_version", nullable = false)
     private Integer tokenVersion;
 
+    @ManyToMany
+    @JoinTable(
+            name = "user_scopes",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "scope_id")
+    )
+    private Set<Scope> scopes;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles;
+
+    public Set<Scope> getScopes() {
+        return scopes;
+    }
+
+    public void setScopes(Set<Scope> scopes) {
+        this.scopes = scopes;
+    }
+
     public User() {
     }
 
@@ -29,6 +55,14 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public String getUserName() {
