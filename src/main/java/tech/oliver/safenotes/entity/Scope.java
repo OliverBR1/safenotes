@@ -2,8 +2,6 @@ package tech.oliver.safenotes.entity;
 
 import jakarta.persistence.*;
 
-import java.util.Set;
-
 @Entity
 @Table(name = "tb_scopes")
 public class Scope {
@@ -17,6 +15,15 @@ public class Scope {
     private String name;
 
     public Scope() {
+    }
+
+    public Scope(String name) {
+        this.name = name;
+    }
+
+    public Scope(Long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public Long getId() {

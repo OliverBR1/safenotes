@@ -14,7 +14,7 @@ public class User {
     private Long id;
 
     @Column(name = "username", unique = true)
-    private String userName;
+    private String username;
 
     @Column(name = "password", unique = true)
     private String password;
@@ -49,6 +49,13 @@ public class User {
     public User() {
     }
 
+    public User(String username, String password, Set<Role> roles, Integer tokenVersion) {
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
+        this.tokenVersion = tokenVersion;
+    }
+
     public Long getId() {
         return id;
     }
@@ -66,11 +73,11 @@ public class User {
     }
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.username = userName;
     }
 
     public String getPassword() {
@@ -88,4 +95,6 @@ public class User {
     public void setTokenVersion(Integer tokenVersion) {
         this.tokenVersion = tokenVersion;
     }
+
+
 }

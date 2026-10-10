@@ -20,11 +20,16 @@ public class Role {
     @JoinTable(
             name = "roles_scopes",
             joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "scope_id")
-    )
+            inverseJoinColumns = @JoinColumn(name = "scope_id"))
+
     private Set<Scope> scopes;
 
-    public Role() {
+    public Role(){
+    }
+
+    public Role(String name, Set<Scope> scopes) {
+        this.name = name;
+        this.scopes = scopes;
     }
 
     public Long getId() {
