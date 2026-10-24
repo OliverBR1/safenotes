@@ -19,10 +19,10 @@ public class JwtConfig {
     private String issuer;
 
     @Value("${jwt.expires-in}")
-    private Long expiresIn;
+    private Integer expiresIn;
 
     @Value("${jwt.refresh-expires-in}")
-    private Long refreshExpiresIn;
+    private Integer refreshExpiresIn;
 
     public RSAPublicKey getPublicKey() {
         return publicKey;
@@ -36,11 +36,11 @@ public class JwtConfig {
         return issuer;
     }
 
-    public Long getExpiresIn() {
+    public Integer getExpiresIn() {
         return expiresIn;
     }
 
-    public Long getRefreshExpiresIn() {
+    public Integer getRefreshExpiresIn() {
         return refreshExpiresIn;
     }
 
