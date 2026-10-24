@@ -7,8 +7,8 @@ import jakarta.persistence.*;
 public class Scope {
 
     @Id
+    @Column(name = "scope_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "scopes_id", nullable = false)
     private Long id;
 
     @Column(name = "name", nullable = false)
@@ -18,11 +18,6 @@ public class Scope {
     }
 
     public Scope(String name) {
-        this.name = name;
-    }
-
-    public Scope(Long id, String name) {
-        this.id = id;
         this.name = name;
     }
 

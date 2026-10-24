@@ -9,9 +9,9 @@ import java.util.Set;
 public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "role_id", nullable = false)
-    private  Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -21,10 +21,9 @@ public class Role {
             name = "roles_scopes",
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "scope_id"))
-
     private Set<Scope> scopes;
 
-    public Role(){
+    public Role() {
     }
 
     public Role(String name, Set<Scope> scopes) {
@@ -44,15 +43,15 @@ public class Role {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Set<Scope> getScopes() {
         return scopes;
     }
 
     public void setScopes(Set<Scope> scopes) {
         this.scopes = scopes;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

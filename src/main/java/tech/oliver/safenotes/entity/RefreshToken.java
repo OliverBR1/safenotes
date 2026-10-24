@@ -36,6 +36,14 @@ public class RefreshToken {
     public RefreshToken() {
     }
 
+    public RefreshToken(UUID familyId, String opaqueHash, User user, Instant issuedAt, Instant expiresAt) {
+        this.familyId = familyId;
+        this.opaqueHash = opaqueHash;
+        this.user = user;
+        this.issuedAt = issuedAt;
+        this.expiresAt = expiresAt;
+    }
+
     public UUID getJti() {
         return jti;
     }

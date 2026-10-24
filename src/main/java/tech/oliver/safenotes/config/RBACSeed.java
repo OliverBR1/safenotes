@@ -14,6 +14,7 @@ import java.util.Set;
 
 @Configuration
 public class RBACSeed implements CommandLineRunner {
+
     private final RoleRepository roleRepository;
     private final ScopeRepository scopeRepository;
     private final UserRepository userRepository;
@@ -27,6 +28,7 @@ public class RBACSeed implements CommandLineRunner {
         this.userRepository = userRepository;
         this.bCryptPasswordEncoder = new BCryptPasswordEncoder();
     }
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -41,10 +43,12 @@ public class RBACSeed implements CommandLineRunner {
         ensureUser("joao", "senha", roleUser);
         ensureUser("ana", "senha", roleViewer);
     }
+
     private Scope ensureScope(String name) {
         return scopeRepository.findByName(name)
                 .orElseGet(() -> scopeRepository.save(new Scope(name)));
     }
+
     private Role ensureRole(String name, Set<Scope> scopes) {
         return roleRepository.findByName(name)
                 .map(role -> {
@@ -53,8 +57,11 @@ public class RBACSeed implements CommandLineRunner {
                 })
                 .orElseGet(() -> roleRepository.save(new Role(name, scopes)));
     }
+
     private User ensureUser(String username, String password, Role role) {
+
         var passwordEncoded = bCryptPasswordEncoder.encode(password);
+
         return userRepository.findByUsername(username)
                 .map(user -> {
                     user.setPassword(passwordEncoded);
